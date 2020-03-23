@@ -10,7 +10,6 @@ public class InteractibleClient : MonoBehaviour, IInteractible
     {
         CustomPotion potion = (CustomPotion)item;
 
-        print("Interacted");
         Destroy(potion.gameObject);
         Instantiate(_potionPrefab);
     }
