@@ -7,17 +7,24 @@ public class CustomPotion : MonoBehaviour, ICustomItem
     public PotionColor Color { get; set; }
     public Vector2 SlotPosition { get; set; }
 
+    private PotionUpdateSprite _potionUpdateSprite;
+
 
     private void Start()
     {
         Color = PotionColor.Empty;
         SlotPosition = Vector2.zero;
+        _potionUpdateSprite = GetComponent<PotionUpdateSprite>();
+
+        if (_potionUpdateSprite == null)
+            Debug.LogError("Error: No 'PotionUpdateSprite' on '" + name + "'.");
     }
 
     public void InteractOnDrop()
     {
         RaycastHit2D hit = GetRaycastHit2D();
         IInteractible interactible;
+        PotionColor oldColor = Color;
 
         if (hit)
         {
@@ -31,7 +38,7 @@ public class CustomPotion : MonoBehaviour, ICustomItem
         else
             ResetPositionToSlot();
 
-        print("My color is: " + Color.ToString());
+        _potionUpdateSprite.ChangeSpriteColor(oldColor, Color);
     }
 
     public void ResetPositionToSlot()
