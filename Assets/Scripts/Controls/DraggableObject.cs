@@ -18,7 +18,7 @@ public class DraggableObject : MonoBehaviour
 
     private void Drop()
     {
-        ICustomItem customItem = GetComponent<ICustomItem>();
+        ACustomItem customItem = GetComponent<ACustomItem>();
 
         customItem.InteractOnDrop();
     }

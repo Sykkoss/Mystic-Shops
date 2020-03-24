@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomPotion : MonoBehaviour, ICustomItem
+public class CustomPotion : ACustomItem
 {
     public PotionColor Color { get; set; }
-    public Vector2 SlotPosition { get; set; }
 
     private PotionUpdateSprite _potionUpdateSprite;
 
@@ -13,14 +12,15 @@ public class CustomPotion : MonoBehaviour, ICustomItem
     private void Start()
     {
         Color = PotionColor.Empty;
-        SlotPosition = Vector2.zero;
+        SlotPosition = transform.position;
+        HasSlotAssigned = false;
         _potionUpdateSprite = GetComponent<PotionUpdateSprite>();
 
         if (_potionUpdateSprite == null)
             Debug.LogError("Error: No 'PotionUpdateSprite' on '" + name + "'.");
     }
 
-    public void InteractOnDrop()
+    public override void InteractOnDrop()
     {
         RaycastHit2D hit = GetRaycastHit2D();
         IInteractible interactible;
@@ -35,15 +35,11 @@ public class CustomPotion : MonoBehaviour, ICustomItem
             else
                 ResetPositionToSlot();
         }
+        // Reseting position this way allows interactibles to reset potion's position when needed (useful for animations)
         else
             ResetPositionToSlot();
 
         _potionUpdateSprite.ChangeSpriteColor(oldColor, Color);
-    }
-
-    public void ResetPositionToSlot()
-    {
-        transform.position = SlotPosition;
     }
 
     private RaycastHit2D GetRaycastHit2D()
@@ -58,5 +54,10 @@ public class CustomPotion : MonoBehaviour, ICustomItem
         boxCollider.enabled = true;
 
         return hit;
+    }
+
+    private void OnDestroy()
+    {
+        FreeItemSlot();
     }
 }
