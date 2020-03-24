@@ -7,11 +7,14 @@ public abstract class ACustomItem : MonoBehaviour
     public bool HasSlotAssigned { get; set; }
 
 
-    public abstract void InteractOnDrop();
+    public abstract bool InteractOnDrop();
 
-    public void ResetPositionToSlot()
+    public bool ResetPositionToSlot()
     {
+        if (!HasSlotAssigned)
+            return SlotManager.Instance.AssignFirstSlotAvailable(this);
         transform.position = SlotPosition;
+        return true;
     }
 
     public void FreeItemSlot()

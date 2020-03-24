@@ -6,7 +6,7 @@ public class InteractibleValve : MonoBehaviour, IInteractible
 {
     public ValveColor _valveColor;
 
-    public void Interact(ACustomItem item)
+    public bool Interact(ACustomItem item)
     {
         CustomPotion potion = (CustomPotion)item;
 
@@ -14,19 +14,20 @@ public class InteractibleValve : MonoBehaviour, IInteractible
         if (!potion.HasSlotAssigned)
         {
             if (SlotManager.Instance.AssignFirstSlotAvailable(item))
-                MixPotion(potion);
+                return MixPotion(potion);
         }
         else
-            MixPotion(potion);
+            return MixPotion(potion);
+        return false;
     }
 
     /// <summary>
     /// Mix color and change 'potion' color
     /// </summary>
     /// <param name="potion"></param>
-    private void MixPotion(CustomPotion potion)
+    private bool MixPotion(CustomPotion potion)
     {
         potion.Color = MixPotionColor.MixPotion(potion.Color, _valveColor);
-        potion.ResetPositionToSlot();
+        return potion.ResetPositionToSlot();
     }
 }

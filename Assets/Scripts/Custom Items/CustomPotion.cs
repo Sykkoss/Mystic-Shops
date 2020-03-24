@@ -20,26 +20,30 @@ public class CustomPotion : ACustomItem
             Debug.LogError("Error: No 'PotionUpdateSprite' on '" + name + "'.");
     }
 
-    public override void InteractOnDrop()
+    public override bool InteractOnDrop()
     {
         RaycastHit2D hit = GetRaycastHit2D();
         IInteractible interactible;
         PotionColor oldColor = Color;
+        bool interactResponse;
 
         if (hit)
         {
             interactible = hit.transform.GetComponent<IInteractible>();
 
             if (interactible != null)
-                interactible.Interact(this);
+            {
+                interactResponse = interactible.Interact(this);
+                _potionUpdateSprite.ChangeSpriteColor(oldColor, Color);
+
+                return interactResponse;
+            }
             else
-                ResetPositionToSlot();
+                return ResetPositionToSlot();
         }
         // Reseting position this way allows interactibles to reset potion's position when needed (useful for animations)
         else
-            ResetPositionToSlot();
-
-        _potionUpdateSprite.ChangeSpriteColor(oldColor, Color);
+            return ResetPositionToSlot();
     }
 
     private RaycastHit2D GetRaycastHit2D()
@@ -50,6 +54,7 @@ public class CustomPotion : ACustomItem
 
         boxCollider.enabled = false;
         ray = ControlsManager.Instance.GetDragPosition();
+        // Casts a raycast ignoring 8th layer which corresponds to 'TouchableItems'
         hit = Physics2D.Raycast(ray, Vector2.zero, 100f, ~(1 << 8));
         boxCollider.enabled = true;
 
