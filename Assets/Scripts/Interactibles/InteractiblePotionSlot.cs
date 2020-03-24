@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class InteractiblePotionSlot : ASlot, IInteractible
 {
-    public void Interact(ACustomItem item)
+    public bool Interact(ACustomItem item)
     {
-        SlotManager.Instance.AssignFirstSlotAvailable(item);
+        return SlotManager.Instance.AssignFirstSlotAvailable(item);
     }
 
     public override void AssignSlot(ACustomItem item)
@@ -19,7 +19,5 @@ public class InteractiblePotionSlot : ASlot, IInteractible
         potion.Slot = this;
         potion.HasSlotAssigned = true;
         IsOccupied = true;
-
-        potion.ResetPositionToSlot();
     }
 }

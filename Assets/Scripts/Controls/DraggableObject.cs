@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DraggableObject : MonoBehaviour
 {
+    public ASupplyBox SupplyBox { get; set; } = null;
+
     public IEnumerator Dragging()
     {
         while (ControlsManager.Instance.IsDragging())
@@ -19,7 +21,16 @@ public class DraggableObject : MonoBehaviour
     private void Drop()
     {
         ACustomItem customItem = GetComponent<ACustomItem>();
+        bool interactResponse;
 
-        customItem.InteractOnDrop();
+        interactResponse = customItem.InteractOnDrop();
+
+        // Decrements supply box capacity only if the drag was coming from a supply box and if the drop was successfull
+        // (It can be unsuccessfull if not enough slot available)
+        if (SupplyBox != null && interactResponse)
+        {
+            SupplyBox.DecrementCurrentCapacity();
+            SupplyBox = null;
+        }
     }
 }

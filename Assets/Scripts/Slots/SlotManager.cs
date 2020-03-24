@@ -37,11 +37,16 @@ public class SlotManager : MonoBehaviour
             }
         }
 
-        if (hasAssigned)
-            return true;
-        else
+        if (item.HasSlotAssigned || hasAssigned)
         {
             item.ResetPositionToSlot();
+            return true;
+        }
+        else
+        {
+            // Destroy item if no slot found and do not already has a slot (since it was instanciated by supplybox)
+            if (!item.HasSlotAssigned)
+                Destroy(item.gameObject);
             return false;
         }
     }

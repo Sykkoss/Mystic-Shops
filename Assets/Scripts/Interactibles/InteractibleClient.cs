@@ -6,10 +6,11 @@ public class InteractibleClient : MonoBehaviour, IInteractible
 {
     public GameObject _potionPrefab;
 
-    public void Interact(ACustomItem item)
+    public bool Interact(ACustomItem item)
     {
         CustomPotion potion = (CustomPotion)item;
 
         Destroy(potion.gameObject);
+        return true;
     }
 }
