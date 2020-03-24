@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IInteractible
 {
-    void Interact(ICustomItem item);
+    void Interact(ACustomItem item);
 }

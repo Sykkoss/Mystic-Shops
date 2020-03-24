@@ -32,7 +32,7 @@ public class ControlsManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            hit = Physics2D.Raycast(ray, Vector2.zero);
+            hit = Physics2D.Raycast(ray, Vector2.zero, 100f, ~(1 << 0));
 
             if (hit)
             {
