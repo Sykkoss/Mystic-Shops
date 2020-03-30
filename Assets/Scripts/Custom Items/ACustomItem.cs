@@ -12,7 +12,7 @@ public abstract class ACustomItem : MonoBehaviour
     public bool ResetPositionToSlot()
     {
         if (!HasSlotAssigned)
-            return SlotManager.Instance.AssignFirstSlotAvailable(this);
+            return SlotManager.Instance.AssignFirstSlotAvailable(this, true);
         transform.position = SlotPosition;
         return true;
     }

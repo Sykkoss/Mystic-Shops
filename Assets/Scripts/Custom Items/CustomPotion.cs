@@ -6,7 +6,8 @@ public class CustomPotion : ACustomItem
 {
     public PotionColor Color { get; set; }
 
-    private PotionUpdateSprite _potionUpdateSprite;
+    [HideInInspector]
+    public PotionUpdateSprite _potionUpdateSprite;
 
 
     private void Start()
@@ -24,8 +25,7 @@ public class CustomPotion : ACustomItem
     {
         RaycastHit2D hit = GetRaycastHit2D();
         IInteractible interactible;
-        PotionColor oldColor = Color;
-        bool interactResponse;
+        bool hasInteracted = false;
 
         if (hit)
         {
@@ -33,15 +33,13 @@ public class CustomPotion : ACustomItem
 
             if (interactible != null)
             {
-                interactResponse = interactible.Interact(this);
-                _potionUpdateSprite.ChangeSpriteColor(oldColor, Color);
-
-                return interactResponse;
+                hasInteracted = interactible.Interact(this);
             }
-            else
-                return ResetPositionToSlot();
         }
+
         // Reseting position this way allows interactibles to reset potion's position when needed (useful for animations)
+        if (hasInteracted)
+            return true;
         else
             return ResetPositionToSlot();
     }

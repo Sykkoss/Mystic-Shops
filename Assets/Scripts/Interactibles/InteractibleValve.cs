@@ -23,7 +23,7 @@ public class InteractibleValve : MonoBehaviour, IInteractible
         // Mix potion only if it already has a slot assigned or if a slot is assigned successfully
         if (!potion.HasSlotAssigned)
         {
-            if (SlotManager.Instance.AssignFirstSlotAvailable(item))
+            if (SlotManager.Instance.AssignFirstSlotAvailable(item, false))
                 return MixPotion(potion);
         }
         else
@@ -37,22 +37,24 @@ public class InteractibleValve : MonoBehaviour, IInteractible
     /// <param name="potion"></param>
     private bool MixPotion(CustomPotion potion)
     {
+        bool changedColor = false;
+
         if (_supplier.CurrentCapacity > 0)
-        {
-            ChangePotionColor(potion);
-        }
-        return potion.ResetPositionToSlot();
+            changedColor = ChangePotionColor(potion);
+
+        return changedColor;
     }
 
-    private void ChangePotionColor(CustomPotion potion)
+    private bool ChangePotionColor(CustomPotion potion)
     {
         PotionColor newColor;
 
         newColor = MixPotionColor.MixPotion(potion.Color, _valveColor);
-        if (newColor != potion.Color)
+        if (newColor != potion.Color && !_supplier._isOccupied)
         {
-            _supplier.FillPotion();
-            potion.Color = newColor;
+            _supplier.FillPotion(potion, newColor);
+            return true;
         }
+        return false;
     }
 }
