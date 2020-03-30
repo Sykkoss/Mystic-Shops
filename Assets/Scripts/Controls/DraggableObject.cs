@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DraggableObject : MonoBehaviour
 {
-    public ASupplyBox SupplyBox { get; set; } = null;
+    public SupplyBox SupplyBox { get; set; } = null;
 
     public IEnumerator Dragging()
     {
