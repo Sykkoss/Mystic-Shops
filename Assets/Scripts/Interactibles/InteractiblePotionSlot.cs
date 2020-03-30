@@ -6,7 +6,7 @@ public class InteractiblePotionSlot : ASlot, IInteractible
 {
     public bool Interact(ACustomItem item)
     {
-        return SlotManager.Instance.AssignFirstSlotAvailable(item);
+        return SlotManager.Instance.AssignFirstSlotAvailable(item, true);
     }
 
     public override void AssignSlot(ACustomItem item)

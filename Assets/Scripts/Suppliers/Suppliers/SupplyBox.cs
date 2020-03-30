@@ -9,7 +9,7 @@ public class SupplyBox : ASupplier
 
     private void Start()
     {
-        SetMaxCapacity(5);
+        SetMaxCapacity(2);
     }
 
     public override void Tapped(Vector3 positionTapped)
@@ -22,7 +22,7 @@ public class SupplyBox : ASupplier
         if (CurrentCapacity >= 1)
             SpawnItem(position);
         else
-            Refill();
+            StartCoroutine(Refilling());
     }
 
     private void SpawnItem(Vector3 position)
@@ -39,8 +39,14 @@ public class SupplyBox : ASupplier
         }
     }
 
-    protected void Refill()
+    private IEnumerator Refilling()
     {
+        SetIsRefilling(true);
+
+        yield return new WaitForSeconds(_refillTime);
+
         ResetCurrentCapacity();
+
+        SetIsRefilling(false);
     }
 }

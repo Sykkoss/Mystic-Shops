@@ -23,7 +23,7 @@ public class SlotManager : MonoBehaviour
         Instance = this;
     }
 
-    public bool AssignFirstSlotAvailable(ACustomItem item)
+    public bool AssignFirstSlotAvailable(ACustomItem item, bool shouldResetPosition)
     {
         bool hasAssigned = false;
 
@@ -39,7 +39,8 @@ public class SlotManager : MonoBehaviour
 
         if (item.HasSlotAssigned || hasAssigned)
         {
-            item.ResetPositionToSlot();
+            if (shouldResetPosition)
+                item.ResetPositionToSlot();
             return true;
         }
         else
