@@ -4,11 +4,19 @@ using UnityEngine;
 
 public abstract class ASupplier : MonoBehaviour, ISupplier
 {
+    public float _refillTime;
+
+    public bool IsRefilling { get; private set; } = false;
     public int MaxCapacity { get; private set; } = 0;
     public int CurrentCapacity { get; private set; } = 0;
 
 
-    #region Capacity modifiers
+    #region Attributes modifiers
+
+    protected void SetIsRefilling(bool isRefilling)
+    {
+        IsRefilling = isRefilling;
+    }
 
     public void SetMaxCapacity(int maxCapacity)
     {
@@ -32,7 +40,7 @@ public abstract class ASupplier : MonoBehaviour, ISupplier
         return false;
     }
 
-    #endregion Capacity modifiers
+    #endregion Attributes modifiers
 
     public abstract void Tapped(Vector3 positionTapped);
 }

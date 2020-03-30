@@ -19,7 +19,7 @@ public class ValveSupplier : ASupplier
     public override void Tapped(Vector3 positionTapped)
     {
         if (CurrentCapacity <= 0)
-            ResetCurrentCapacity();
+            StartCoroutine(Refilling());
     }
 
     public void FillPotion(CustomPotion potion, PotionColor newColor)
@@ -43,6 +43,18 @@ public class ValveSupplier : ASupplier
         DecrementCurrentCapacity();
 
         _isOccupied = false;
+    }
+
+    private IEnumerator Refilling()
+    {
+        SetIsRefilling(true);
+
+        //TODO: Start animation
+        yield return new WaitForSeconds(_refillTime);
+
+        ResetCurrentCapacity();
+
+        SetIsRefilling(false);
     }
 
 }
