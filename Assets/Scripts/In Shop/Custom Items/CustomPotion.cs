@@ -13,12 +13,15 @@ public class CustomPotion : ACustomItem
     private void Start()
     {
         Color = PotionColor.Empty;
-        SlotPosition = transform.position;
-        HasSlotAssigned = false;
         _potionUpdateSprite = GetComponent<PotionUpdateSprite>();
 
         if (_potionUpdateSprite == null)
             Debug.LogError("Error: No 'PotionUpdateSprite' on '" + name + "'.");
+    }
+
+    public override bool IsSellable()
+    {
+        return Color != PotionColor.Empty;
     }
 
     public override bool InteractOnDrop()
@@ -61,6 +64,7 @@ public class CustomPotion : ACustomItem
 
     private void OnDestroy()
     {
+        Slot = null;
         FreeItemSlot();
     }
 }
