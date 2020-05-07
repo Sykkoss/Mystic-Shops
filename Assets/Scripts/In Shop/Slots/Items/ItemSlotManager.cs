@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotManager : MonoBehaviour
+public class ItemSlotManager : MonoBehaviour
 {
-    public static SlotManager Instance;
+    public static ItemSlotManager Instance;
 
-    private List<ASlot> _slots;
+    private List<AItemSlot> _slots;
 
 
     void Start()
     {
-        ASlot currentSlot;
+        AItemSlot currentSlot;
 
-        _slots = new List<ASlot>();
+        _slots = new List<AItemSlot>();
         foreach (Transform child in transform)
         {
-            currentSlot = child.GetComponent<ASlot>();
+            currentSlot = child.GetComponent<AItemSlot>();
             if (currentSlot != null)
                 _slots.Add(currentSlot);
         }
@@ -27,9 +27,9 @@ public class SlotManager : MonoBehaviour
     {
         bool hasAssigned = false;
 
-        foreach (ASlot currentSlot in _slots)
+        foreach (AItemSlot currentSlot in _slots)
         {
-            if (!item.HasSlotAssigned && !currentSlot.IsOccupied)
+            if (!item.HasSlotAssigned() && !currentSlot.IsOccupied)
             {
                 currentSlot.AssignSlot(item);
                 hasAssigned = true;
@@ -37,7 +37,7 @@ public class SlotManager : MonoBehaviour
             }
         }
 
-        if (item.HasSlotAssigned || hasAssigned)
+        if (item.HasSlotAssigned() || hasAssigned)
         {
             if (shouldResetPosition)
                 item.ResetPositionToSlot();
@@ -46,7 +46,7 @@ public class SlotManager : MonoBehaviour
         else
         {
             // Destroy item if no slot found and do not already has a slot (since it was instanciated by supplybox)
-            if (!item.HasSlotAssigned)
+            if (!item.HasSlotAssigned())
                 Destroy(item.gameObject);
             return false;
         }

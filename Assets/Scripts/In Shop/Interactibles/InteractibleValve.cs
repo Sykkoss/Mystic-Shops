@@ -21,9 +21,9 @@ public class InteractibleValve : MonoBehaviour, IInteractible
         CustomPotion potion = (CustomPotion)item;
 
         // Mix potion only if it already has a slot assigned or if a slot is assigned successfully
-        if (!potion.HasSlotAssigned)
+        if (!potion.HasSlotAssigned())
         {
-            if (SlotManager.Instance.AssignFirstSlotAvailable(item, false))
+            if (ItemSlotManager.Instance.AssignFirstSlotAvailable(item, false))
                 return MixPotion(potion);
         }
         else
