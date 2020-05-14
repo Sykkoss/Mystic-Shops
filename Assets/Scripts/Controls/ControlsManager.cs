@@ -38,22 +38,20 @@ public class ControlsManager : MonoBehaviour
         // Casts a raycast ignoring first layer which corresponds to 'Default', letting other 'TouchableItems' available to raycast
         RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero, 100f, ~(1 << 0));
         DraggableObject draggableObject;
+        TouchableObject touchableObject;
         ASupplier supplier;
 
         if (hit)
         {
             // Gets a Draggable object and if found, call its Dragging() method for the object to follow the mouse
-            draggableObject = hit.transform.GetComponent<DraggableObject>();
+            if (hit.transform.TryGetComponent<DraggableObject>(out draggableObject))
+                StartCoroutine(draggableObject.Dragging());
+            else if (hit.transform.TryGetComponent<TouchableObject>(out touchableObject))
+                touchableObject.Touching();
+            else if (hit.transform.TryGetComponent<ASupplier>(out supplier))
+                supplier.Tapped(inputPosition);
 
             // If no DraggableObject found, search for a Supplier
-            if (draggableObject != null)
-                StartCoroutine(draggableObject.Dragging());
-            else
-            {
-                supplier = hit.transform.GetComponent<ASupplier>();
-                if (supplier != null)
-                    supplier.Tapped(inputPosition);
-            }
         }
     }
 

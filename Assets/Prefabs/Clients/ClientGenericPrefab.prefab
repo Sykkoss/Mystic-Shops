@@ -185,3 +185,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveTime: 4
+  _pileOfCoinPrefab: {fileID: 1105112188735428695, guid: f012299b3209bdf4b89c0f8f61df9ff1,
+    type: 3}
