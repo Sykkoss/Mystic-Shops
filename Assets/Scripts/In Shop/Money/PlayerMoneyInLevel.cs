@@ -18,14 +18,6 @@ public class PlayerMoneyInLevel : MonoBehaviour
         Instance = this;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-            EarnMoney(50);
-        else if (Input.GetKeyDown(KeyCode.L))
-            LooseMoney(50);
-    }
-
     public void EarnMoney(int amount)
     {
         CurrentMoney += amount;
