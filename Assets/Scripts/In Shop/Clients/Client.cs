@@ -97,13 +97,14 @@ public class Client : MonoBehaviour
             yield return null;
 
         _interactibleOrder.gameObject.SetActive(false);
-        MoveOut();
+        HasBeenServed();
     }
 
-    private void MoveOut()
+    private void HasBeenServed()
     {
         Vector2 outOfScreenDestination = ClientDestination.ComputeSpawnOrQuitPosition();
 
+        PlayerMoneyInLevel.Instance.EarnMoney(10);
         StartCoroutine(MoveTowardsDestination(outOfScreenDestination, DestroyClient));
     }
 
