@@ -5,6 +5,7 @@ using UnityEngine;
 public class Client : MonoBehaviour
 {
     public float _moveTime;
+    public GameObject _pileOfCoinPrefab;
 
     public ClientData Infos { get; private set; }
     public ClientSlot Slot { get; private set; }
@@ -104,13 +105,26 @@ public class Client : MonoBehaviour
     {
         Vector2 outOfScreenDestination = ClientDestination.ComputeSpawnOrQuitPosition();
 
-        PlayerMoneyInLevel.Instance.EarnMoney(10);
+        PutMoneyOnCounter();
         StartCoroutine(MoveTowardsDestination(outOfScreenDestination, DestroyClient));
+    }
+
+    private void PutMoneyOnCounter()
+    {
+        GameObject pileOfCoins = Instantiate(_pileOfCoinPrefab, Slot._pileOfCoinPosition, Quaternion.identity);
+        TouchPileOfCoins touchPileOfCoins;
+
+        if (pileOfCoins.TryGetComponent<TouchPileOfCoins>(out touchPileOfCoins))
+        {
+            touchPileOfCoins.CoinsValue = 10;
+            touchPileOfCoins.ClientSlot = Slot;
+        }
+        else
+            Debug.LogError("Error: Pile of coins do not have 'TouchPileOfCoins' script (gameObject named '" + pileOfCoins.name + "'.");
     }
 
     private void DestroyClient()
     {
-        Slot.FreeSlot();
         Destroy(this.gameObject);
     }
 
