@@ -42,6 +42,8 @@ public class InteractibleValve : MonoBehaviour, IInteractible
         if (_supplier.CurrentCapacity > 0)
             changedColor = ChangePotionColor(potion);
 
+        if (changedColor)
+            potion.Complexity += 1;
         return changedColor;
     }
 

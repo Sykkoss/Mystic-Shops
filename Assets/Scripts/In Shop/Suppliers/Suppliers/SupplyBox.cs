@@ -5,11 +5,12 @@ using UnityEngine;
 public class SupplyBox : ASupplier
 {
     public GameObject _itemPrefab;
+    public int _maxCapacity;
 
 
     private void Start()
     {
-        SetMaxCapacity(2);
+        SetMaxCapacity(_maxCapacity);
     }
 
     public override void Tapped(Vector3 positionTapped)

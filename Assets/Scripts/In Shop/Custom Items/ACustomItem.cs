@@ -3,11 +3,12 @@
 public abstract class ACustomItem : MonoBehaviour
 {
     public AItemSlot Slot { get; set; }
-
+    public int Complexity { get; set; }
 
     private void Start()
     {
         Slot = null;
+        Complexity = 0;
     }
 
     public bool HasSlotAssigned()
@@ -31,4 +32,5 @@ public abstract class ACustomItem : MonoBehaviour
 
     public abstract bool IsSellable();
     public abstract bool InteractOnDrop();
+    public abstract bool CheckOrderItem(OrderItems.OrderItem orderItem);
 }

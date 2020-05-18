@@ -11,7 +11,7 @@ public class ClientGenerator : MonoBehaviour
     {
         Queue<ClientData> levelClients = new Queue<ClientData>();
 
-        while (levelClients.Count <= maxClients)
+        while (levelClients.Count < maxClients)
         {
             ClientData nextClient = GetNextClient();
             levelClients.Enqueue(nextClient);

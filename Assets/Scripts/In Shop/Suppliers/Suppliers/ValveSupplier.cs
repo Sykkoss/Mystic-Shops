@@ -5,6 +5,7 @@ using UnityEngine;
 public class ValveSupplier : ASupplier
 {
     public float _fillingTime;
+    public int _maxCapacity;
 
     [HideInInspector]
     public bool _isOccupied;
@@ -13,7 +14,7 @@ public class ValveSupplier : ASupplier
     private void Start()
     {
         _isOccupied = false;
-        SetMaxCapacity(2);
+        SetMaxCapacity(_maxCapacity);
     }
 
     public override void Tapped(Vector3 positionTapped)
