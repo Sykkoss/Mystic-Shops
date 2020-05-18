@@ -10,6 +10,17 @@ public class CustomPotion : ACustomItem
     public PotionUpdateSprite _potionUpdateSprite;
 
 
+    public override bool CheckOrderItem(OrderItems.OrderItem orderItem)
+    {
+        OrderItems.Potion comparedPotion = (OrderItems.Potion)orderItem;
+
+        if (this.GetType() == comparedPotion.Type &&
+            Complexity == comparedPotion.Complexity &&
+            Color == comparedPotion.Color)
+            return true;
+        return false;
+    }
+
     private void Start()
     {
         Color = PotionColor.Empty;

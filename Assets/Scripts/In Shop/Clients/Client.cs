@@ -64,20 +64,20 @@ public class Client : MonoBehaviour
 
     #region States
 
-    private IEnumerator MoveTowardsDestination(Vector2 destination, System.Action methodToCallWhenFinished)
+    private IEnumerator MoveTowardsDestination(Vector3 destination, System.Action methodToCallWhenFinished)
     {
         float elapsedTime = 0;
-        Vector2 startPosition = transform.localPosition;
+        Vector3 startPosition = transform.position;
 
         State = ClientState.Moving;
         destination.y = transform.position.y;
         while (elapsedTime < _moveTime)
         {
-            transform.localPosition = Vector2.Lerp(startPosition, destination, (elapsedTime / _moveTime));
+            transform.position = Vector3.Lerp(startPosition, destination, (elapsedTime / _moveTime));
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        transform.localPosition = destination;
+        transform.position = destination;
         methodToCallWhenFinished();
     }
 
@@ -116,7 +116,7 @@ public class Client : MonoBehaviour
 
         if (pileOfCoins.TryGetComponent<TouchPileOfCoins>(out touchPileOfCoins))
         {
-            touchPileOfCoins.CoinsValue = 10;
+            touchPileOfCoins.CoinsValue = _interactibleOrder.Info.cost;
             touchPileOfCoins.ClientSlot = Slot;
         }
         else

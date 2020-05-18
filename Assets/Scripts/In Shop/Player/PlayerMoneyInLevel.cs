@@ -9,7 +9,7 @@ public class PlayerMoneyInLevel : MonoBehaviour
     public delegate void OnMoneyChangeDelegate(int newValue);
     public event OnMoneyChangeDelegate OnMoneyChange;
 
-    public int CurrentMoney { get; private set; }
+    public int CurrentMoney { get; private set; } = 0;
 
 
     private void Awake()
