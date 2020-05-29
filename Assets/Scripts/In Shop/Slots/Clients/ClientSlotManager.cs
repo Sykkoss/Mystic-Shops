@@ -45,7 +45,7 @@ public class ClientSlotManager : MonoBehaviour
 
         if (!hasAssigned)
         {
-            Destroy(client.gameObject);
+            client.DestroyClient();
             return false;
         }
         return true;

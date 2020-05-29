@@ -17,14 +17,14 @@ public class Client : MonoBehaviour
     private void Awake()
     {
         Slot = null;
-        _interactibleOrder = transform.GetChild(0).GetComponent<InteractibleOrder>();
-        if (_interactibleOrder == null)
-            Debug.LogError("Error: No Component 'InteractibleOrder' were found on gameObject '" + transform.GetChild(0).name + "'. Could not continue.");
-        else
-        {
-            // Disable Order until the client actually orders
-            _interactibleOrder.gameObject.SetActive(false);
-        }
+        //_interactibleOrder = transform.GetChild(0).GetComponent<InteractibleOrder>();
+        //if (_interactibleOrder == null)
+        //    Debug.LogError("Error: No Component 'InteractibleOrder' were found on gameObject '" + transform.GetChild(0).name + "'. Could not continue.");
+        //else
+        //{
+        //    // Disable Order until the client actually orders
+        //    _interactibleOrder.gameObject.SetActive(false);
+        //}
     }
 
     public bool HasSlotAssigned()
@@ -35,9 +35,11 @@ public class Client : MonoBehaviour
 
     #region Client creation
 
-    public void CreateClient(ClientData newClientData)
+    public void CreateClient(ClientData newClientData, InteractibleOrder order)
     {
         Infos = newClientData;
+        _interactibleOrder = order;
+        _interactibleOrder.InitOrder();
         gameObject.name = Infos.name;
         SetSprite(Infos.sprite);
         ClientSlotManager.Instance.AssignRandomSlotAvailable(this);
@@ -86,7 +88,8 @@ public class Client : MonoBehaviour
         State = ClientState.Ordering;
 
         //Animation
-        _interactibleOrder.gameObject.SetActive(true);
+        _interactibleOrder.ShowOrder(true);
+        _interactibleOrder.SetOrderPositionOnScreen(transform.GetChild(0).position);
         StartCoroutine(WaitForOrder());
     }
 
@@ -97,7 +100,7 @@ public class Client : MonoBehaviour
         while (!_interactibleOrder.HasFulfilledOrder)
             yield return null;
 
-        _interactibleOrder.gameObject.SetActive(false);
+        _interactibleOrder.ShowOrder(false);
         HasBeenServed();
     }
 
@@ -123,9 +126,10 @@ public class Client : MonoBehaviour
             Debug.LogError("Error: Pile of coins do not have 'TouchPileOfCoins' script (gameObject named '" + pileOfCoins.name + "'.");
     }
 
-    private void DestroyClient()
+    public void DestroyClient()
     {
         Destroy(this.gameObject);
+        _interactibleOrder.DestroyOrder();
     }
 
     #endregion States

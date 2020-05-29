@@ -8,6 +8,8 @@ public class ClientManager : MonoBehaviour
 
     public int _maxClients;
     public GameObject _clientGenericPrefab;
+    public GameObject _orderUIPrefab;
+    public Transform _orderParent;
 
     private ClientGenerator _clientGenerator;
     private Queue<ClientData> _clientsList;
@@ -45,12 +47,17 @@ public class ClientManager : MonoBehaviour
     {
         ClientData clientDataToSpawn = _clientsList.Dequeue();
         GameObject clientSpawnedGameObject;
+        GameObject orderSpawnedGameObject;
         Client clientSpawned;
 
         clientSpawnedGameObject = Instantiate(_clientGenericPrefab, ClientDestination.ComputeSpawnOrQuitPosition(), Quaternion.identity, transform);
         if (!clientSpawnedGameObject.TryGetComponent<Client>(out clientSpawned))
             Debug.LogError("Error: No Component 'Client' was found on gameObject '" + clientSpawnedGameObject.name + "'.");
         else
-            clientSpawned.CreateClient(clientDataToSpawn);
+        {
+            orderSpawnedGameObject = Instantiate(_orderUIPrefab, Camera.main.WorldToScreenPoint(clientSpawnedGameObject.transform.GetChild(0).transform.position), Quaternion.identity, _orderParent);
+            clientSpawned.CreateClient(clientDataToSpawn, orderSpawnedGameObject.GetComponent<InteractibleOrder>());
+            orderSpawnedGameObject.SetActive(false);
+        }
     }
 }
