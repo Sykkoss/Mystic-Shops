@@ -15,7 +15,6 @@ public class DisplayOrderUI : MonoBehaviour
             OrderItems.Potion customPotion = (OrderItems.Potion)currentItem;
 
             _itemSlots[index].sprite = OrderPotionItemUI.Instance.GetPotionSprite(customPotion.Color);
-            print("[" + index + "] Type = " + currentItem.Type + "      Color = " + customPotion.Color + "      Complexity = " + customPotion.Complexity);
             index++;
         }
     }
