@@ -18,7 +18,7 @@ public static class OrderGeneration
         int totalCost = 0;
 
         foreach (OrderItems.OrderItem currentItem in items)
-            totalCost += 10 + (5 * (currentItem.Complexity - 1));
+            totalCost += ItemsCost.ComputeItemCost(currentItem);
         return totalCost;
     }
 

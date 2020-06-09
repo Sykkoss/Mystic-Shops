@@ -12,7 +12,6 @@ public class OrderItems
         bool IsGiven { get; set; }
     }
 
-
     public class Potion : OrderItem
     {
         public System.Type Type { get { return typeof(CustomPotion); } }
