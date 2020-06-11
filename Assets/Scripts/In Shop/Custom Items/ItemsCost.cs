@@ -10,6 +10,9 @@ public static class ItemsCost
     {
         if (orderItem.Type == typeof(CustomPotion))
             return ComputePotionCost(orderItem.Complexity);
+        else if (orderItem.GetType() == typeof(CustomYokaiMask))
+            return ComputeYokaiMaskCost(orderItem.Complexity);
+        Debug.LogError("Error: Item of type '" + orderItem.GetType().ToString() + "' has no currency value.");
         return 0;
     }
 

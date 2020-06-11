@@ -45,6 +45,7 @@ public static class OrderGeneration
             return GenerateCustomPotion(itemComplexity);
         else if (item == typeof(CustomYokaiMask))
             return GenerateCustomYokaiMask(itemComplexity);
+        Debug.LogError("Error: Item of type '" + item.GetType().ToString() + "' cannot be generated in order.");
         return null;
     }
 

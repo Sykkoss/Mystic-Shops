@@ -23,6 +23,7 @@ public class DisplayOrderUI : MonoBehaviour
             return OrderPotionItemUI.Instance.GetPotionSprite(currentItem as OrderItems.Potion);
         else if (currentItem.Type == typeof(CustomYokaiMask))
             return OrderYokaiMaskItemUI.Instance.GetMaskSprite(currentItem as OrderItems.YokaiMask);
+        Debug.LogError("Error: Item of type '" + currentItem.GetType().ToString() + "' has no sprite table for orders.");
         return null;
     }
 
