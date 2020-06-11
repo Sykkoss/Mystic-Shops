@@ -64,8 +64,6 @@ public class Client : MonoBehaviour
         Vector3 startPosition = transform.position;
 
         State = ClientState.Moving;
-        print("Client named '" + name + "' should go to: " + destination + " (Slot name is: " + Slot.name +")");
-        //destination.y = transform.position.y;
         while (elapsedTime < _moveTime)
         {
             transform.position = Vector3.Lerp(startPosition, destination, (elapsedTime / _moveTime));
@@ -73,7 +71,6 @@ public class Client : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = destination;
-        print("Client named '" + name + "' is now at: " + transform.position);
         methodToCallWhenFinished();
     }
 
