@@ -8,9 +8,9 @@ public class ClientSlot : ASlot
     public Vector2 _pileOfCoinPosition;
 
 
-    private void Awake()
+    public void InitSlot()
     {
-        _pileOfCoinPosition = transform.GetChild(1).transform.position;
+        _pileOfCoinPosition = transform.GetChild(0).transform.position;
         if (_pileOfCoinPosition == null)
             Debug.LogError("Error: No pile of coin child slot for gameObject '" + gameObject.name + "'.");
     }

@@ -9,7 +9,12 @@ public class ClientSlotManager : MonoBehaviour
     private List<ClientSlot> _slots;
 
 
-    void Start()
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void InitSlots()
     {
         ClientSlot currentSlot;
 
@@ -17,10 +22,10 @@ public class ClientSlotManager : MonoBehaviour
         foreach (Transform child in transform)
         {
             currentSlot = child.GetComponent<ClientSlot>();
+            currentSlot.InitSlot();
             if (currentSlot != null)
                 _slots.Add(currentSlot);
         }
-        Instance = this;
     }
 
     public bool AssignRandomSlotAvailable(Client client)

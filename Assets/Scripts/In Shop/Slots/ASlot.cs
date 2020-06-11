@@ -8,9 +8,9 @@ public abstract class ASlot : MonoBehaviour
     public Vector2 SlotPosition { get; private set; }
 
 
-    private void Start()
+    private void Awake()
     {
-        SlotPosition = transform.GetChild(0).transform.position;
+        SlotPosition = transform.position;
     }
 
     public void FreeSlot()

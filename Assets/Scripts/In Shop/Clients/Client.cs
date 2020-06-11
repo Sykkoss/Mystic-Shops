@@ -17,14 +17,6 @@ public class Client : MonoBehaviour
     private void Awake()
     {
         Slot = null;
-        //_interactibleOrder = transform.GetChild(0).GetComponent<InteractibleOrder>();
-        //if (_interactibleOrder == null)
-        //    Debug.LogError("Error: No Component 'InteractibleOrder' were found on gameObject '" + transform.GetChild(0).name + "'. Could not continue.");
-        //else
-        //{
-        //    // Disable Order until the client actually orders
-        //    _interactibleOrder.gameObject.SetActive(false);
-        //}
     }
 
     public bool HasSlotAssigned()
@@ -72,7 +64,8 @@ public class Client : MonoBehaviour
         Vector3 startPosition = transform.position;
 
         State = ClientState.Moving;
-        destination.y = transform.position.y;
+        print("Client named '" + name + "' should go to: " + destination + " (Slot name is: " + Slot.name +")");
+        //destination.y = transform.position.y;
         while (elapsedTime < _moveTime)
         {
             transform.position = Vector3.Lerp(startPosition, destination, (elapsedTime / _moveTime));
@@ -80,6 +73,7 @@ public class Client : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = destination;
+        print("Client named '" + name + "' is now at: " + transform.position);
         methodToCallWhenFinished();
     }
 
