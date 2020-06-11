@@ -23,6 +23,8 @@ public class DraggableObject : MonoBehaviour
         ACustomItem customItem = GetComponent<ACustomItem>();
         bool interactResponse;
 
+        if (SupplyBox != null)
+            customItem.SetItemSlotManager(SupplyBox._itemSlotManager);
         interactResponse = customItem.InteractOnDrop();
 
         // Decrements supply box capacity only if the drag was coming from a supply box and if the drop was successfull

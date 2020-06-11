@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SupplyBox : ASupplier
 {
+    public ItemSlotManager _itemSlotManager;
     public GameObject _itemPrefab;
     public int _maxCapacity;
 
