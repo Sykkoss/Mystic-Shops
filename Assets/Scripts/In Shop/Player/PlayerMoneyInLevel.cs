@@ -27,8 +27,6 @@ public class PlayerMoneyInLevel : MonoBehaviour
     public void LooseMoney(int amount)
     {
         CurrentMoney -= amount;
-        if (CurrentMoney < 0)
-            CurrentMoney = 0;
         TriggerMoneyChangeEvent();
     }
 

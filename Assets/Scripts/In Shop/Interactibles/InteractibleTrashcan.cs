@@ -9,6 +9,7 @@ public class InteractibleTrashcan : MonoBehaviour, IInteractible
         if (item.IsSellable())
         {
             item.FreeItemSlot();
+            PlayerMoneyInLevel.Instance.LooseMoney(ItemsCost.ComputeItemCost(item));
             Destroy(item.gameObject);
             return true;
         }
