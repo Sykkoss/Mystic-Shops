@@ -17,6 +17,9 @@ public static class ItemsCost
     {
         if (customItem.GetType() == typeof(CustomPotion))
             return ComputePotionCost(customItem.Complexity);
+        else if (customItem.GetType() == typeof(CustomYokaiMask))
+            return ComputeYokaiMaskCost(customItem.Complexity);
+        Debug.LogError("Error: Item of type '" + customItem.GetType().ToString() + "' has no currency value.");
         return 0;
     }
 
@@ -29,4 +32,11 @@ public static class ItemsCost
         return 10 + (5 * (complexity - 1));
     }
     #endregion Potion
+
+    #region Yokai Masks
+    private static int ComputeYokaiMaskCost(int complexity)
+    {
+        return 15 + (5 * (complexity - 1));
+    }
+    #endregion Yokai Masks
 }

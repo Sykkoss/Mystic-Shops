@@ -5016,6 +5016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1673257140}
   - component: {fileID: 1673257139}
+  - component: {fileID: 1673257141}
   m_Layer: 0
   m_Name: OrdersItemAssociations
   m_TagString: Untagged
@@ -5071,6 +5072,61 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1673257141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673257138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf7f30ed827b8140adaeb17cc1f7ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _kitsuneMasksAssociations:
+  - paint: 1
+    sprite: {fileID: -5547143051009293955, guid: a26fe9e502d2c794889c00e1da2dda65,
+      type: 3}
+  - paint: 2
+    sprite: {fileID: 406887254001310674, guid: 86fafba5bf0576b4b91ed43a5b88bd86, type: 3}
+  - paint: 3
+    sprite: {fileID: -2937648478511950767, guid: a26fe9e502d2c794889c00e1da2dda65,
+      type: 3}
+  - paint: 4
+    sprite: {fileID: 2318000653720819663, guid: 86fafba5bf0576b4b91ed43a5b88bd86,
+      type: 3}
+  - paint: 5
+    sprite: {fileID: 7009250588832506111, guid: a26fe9e502d2c794889c00e1da2dda65,
+      type: 3}
+  - paint: 6
+    sprite: {fileID: -2277534185222337443, guid: 86fafba5bf0576b4b91ed43a5b88bd86,
+      type: 3}
+  - paint: 7
+    sprite: {fileID: 7048488459281583439, guid: 8d6b7b4d426d2e343b0e51a00af96fd4,
+      type: 3}
+  _demonMasksAssociations:
+  - paint: 1
+    sprite: {fileID: -886600960620521304, guid: 7bcd851ed21d4f747ad87a37aff96781,
+      type: 3}
+  - paint: 2
+    sprite: {fileID: 5625864154895512581, guid: eaed8748f333c734b95c6405e7dabaa1,
+      type: 3}
+  - paint: 3
+    sprite: {fileID: 4232706782990060559, guid: 7bcd851ed21d4f747ad87a37aff96781,
+      type: 3}
+  - paint: 4
+    sprite: {fileID: -4521486378487315573, guid: eaed8748f333c734b95c6405e7dabaa1,
+      type: 3}
+  - paint: 5
+    sprite: {fileID: -4828955206877436067, guid: 7bcd851ed21d4f747ad87a37aff96781,
+      type: 3}
+  - paint: 6
+    sprite: {fileID: 2585727354144063853, guid: eaed8748f333c734b95c6405e7dabaa1,
+      type: 3}
+  - paint: 7
+    sprite: {fileID: 7569522902362166627, guid: f5abc0e0bb12453469291a2547a038b5,
+      type: 3}
 --- !u!1 &1688773325
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,6 +43,8 @@ public static class OrderGeneration
 
         if (item == typeof(CustomPotion))
             return GenerateCustomPotion(itemComplexity);
+        else if (item == typeof(CustomYokaiMask))
+            return GenerateCustomYokaiMask(itemComplexity);
         return null;
     }
 
@@ -61,6 +63,21 @@ public static class OrderGeneration
         randomColorWithComplexity = ItemsOrderable.potionColorsComplexity[itemComplexity][potionColorIndex];
         potion.Color = randomColorWithComplexity;
         return potion;
+    }
+
+    private static OrderItems.OrderItem GenerateCustomYokaiMask(int itemComplexity)
+    {
+        OrderItems.YokaiMask yokaiMask = new OrderItems.YokaiMask();
+        YokaiMaskPaint randomPaintWithComplexity;
+        int maskPaintIndex;
+
+        yokaiMask.Complexity = itemComplexity;
+
+        maskPaintIndex = Random.Range(0, ItemsOrderable.yokaiMaskPaintComplexity[itemComplexity].Count);
+        randomPaintWithComplexity = ItemsOrderable.yokaiMaskPaintComplexity[itemComplexity][maskPaintIndex];
+        yokaiMask.Paint = randomPaintWithComplexity;
+        yokaiMask.MaskType = (YokaiMaskType)Random.Range(0, System.Enum.GetNames(typeof(YokaiMaskType)).Length);
+        return yokaiMask;
     }
 
     #endregion Different Types

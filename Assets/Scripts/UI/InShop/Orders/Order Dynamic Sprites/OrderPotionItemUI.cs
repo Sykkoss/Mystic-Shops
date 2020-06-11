@@ -20,11 +20,11 @@ public class OrderPotionItemUI : MonoBehaviour
         Instance = this;
     }
 
-    public Sprite GetPotionSprite(PotionColor potionColor)
+    public Sprite GetPotionSprite(OrderItems.Potion potionItem)
     {
         foreach (PotionAssociation currentAssociation in _potionsAssociations)
         {
-            if (currentAssociation.color == potionColor)
+            if (currentAssociation.color == potionItem.Color)
                 return currentAssociation.sprite;
         }
         return null;

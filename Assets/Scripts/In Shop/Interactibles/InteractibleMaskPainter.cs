@@ -55,8 +55,8 @@ public class InteractibleMaskPainter : MonoBehaviour, IInteractible
     {
         YokaiMaskPaint newColor;
 
-        newColor = MixMaskPaint.MixPaint(yokaiMask.PaintType, _maskPainterType);
-        if (newColor != yokaiMask.PaintType && !_supplier._isOccupied)
+        newColor = MixMaskPaint.MixPaint(yokaiMask.Paint, _maskPainterType);
+        if (newColor != yokaiMask.Paint && !_supplier._isOccupied)
         {
             _supplier.PaintMask(yokaiMask, newColor);
             return true;

@@ -26,8 +26,12 @@ public class CustomPotion : ACustomItem
 
     public override bool CheckOrderItem(OrderItems.OrderItem orderItem)
     {
-        OrderItems.Potion comparedPotion = (OrderItems.Potion)orderItem;
+        OrderItems.Potion comparedPotion;
 
+        if (orderItem.GetType() != typeof(OrderItems.Potion))
+            return false;
+
+        comparedPotion = (OrderItems.Potion)orderItem;
         if (this.GetType() == comparedPotion.Type &&
             Complexity == comparedPotion.Complexity &&
             Color == comparedPotion.Color)
