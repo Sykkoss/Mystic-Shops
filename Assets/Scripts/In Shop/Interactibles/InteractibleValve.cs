@@ -18,12 +18,16 @@ public class InteractibleValve : MonoBehaviour, IInteractible
 
     public bool Interact(ACustomItem item)
     {
-        CustomPotion potion = (CustomPotion)item;
+        CustomPotion potion;
 
+        if (item.GetType() != typeof(CustomPotion))
+            return false;
+
+        potion = (CustomPotion)item;
         // Mix potion only if it already has a slot assigned or if a slot is assigned successfully
         if (!potion.HasSlotAssigned())
         {
-            if (ItemSlotManager.Instance.AssignFirstSlotAvailable(item, false))
+            if (potion._itemSlotManager.AssignFirstSlotAvailable(item, false))
                 return MixPotion(potion);
         }
         else

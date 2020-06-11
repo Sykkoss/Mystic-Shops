@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ItemSlotManager : MonoBehaviour
 {
-    public static ItemSlotManager Instance;
-
     private List<AItemSlot> _slots;
 
 
@@ -20,7 +18,6 @@ public class ItemSlotManager : MonoBehaviour
             if (currentSlot != null)
                 _slots.Add(currentSlot);
         }
-        Instance = this;
     }
 
     public bool AssignFirstSlotAvailable(ACustomItem item, bool shouldResetPosition)
