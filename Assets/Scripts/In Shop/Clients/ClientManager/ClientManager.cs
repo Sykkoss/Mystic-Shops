@@ -22,6 +22,7 @@ public class ClientManager : MonoBehaviour
             Debug.LogError("Error: No Component 'ClientGenerator' were found on gameObject '" + gameObject.name + "'. Could not continue.");
         else
         {
+            ClientSlotManager.Instance.InitSlots();
             _clientsList = _clientGenerator.GenerateFullLevelClients(_maxClients);
             StartSpawningClients();
         }
