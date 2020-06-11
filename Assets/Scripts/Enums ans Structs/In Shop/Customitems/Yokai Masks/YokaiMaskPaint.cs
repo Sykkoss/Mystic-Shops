@@ -4,8 +4,8 @@
     Drop,
     Eye,
     Fire,
-    DropEye,
-    DropFire,
     EyeFire,
+    DropFire,
+    DropEye,
     DropEyeFire
 }
