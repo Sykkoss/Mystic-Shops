@@ -19,4 +19,13 @@ public class OrderItems
         public bool IsGiven { get; set; }
         public PotionColor Color { get; set; }
     }
+
+    public class YokaiMask : OrderItem
+    {
+        public System.Type Type { get { return typeof(CustomYokaiMask); } }
+        public int Complexity { get; set; }
+        public bool IsGiven { get; set; }
+        public YokaiMaskPaint Paint { get; set; }
+        public YokaiMaskType MaskType { get; set; }
+    }
 }

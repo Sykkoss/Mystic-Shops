@@ -38,8 +38,8 @@ public class MaskPainterSupplier : ASupplier
         //TODO: Start animation
         yield return new WaitForSeconds(_fillingTime);
 
-        yokaiMask._potionUpdateSprite.ChangeSpriteColor((PotionColor)yokaiMask.PaintType, (PotionColor)newPaint);
-        yokaiMask.PaintType = newPaint;
+        yokaiMask._potionUpdateSprite.ChangeSpriteColor((PotionColor)yokaiMask.Paint, (PotionColor)newPaint);
+        yokaiMask.Paint = newPaint;
         yokaiMask.ResetPositionToSlot();
         DecrementCurrentCapacity();
 

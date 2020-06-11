@@ -12,11 +12,19 @@ public class DisplayOrderUI : MonoBehaviour
         int index = 0;
         foreach (OrderItems.OrderItem currentItem in orderItems)
         {
-            OrderItems.Potion customPotion = (OrderItems.Potion)currentItem;
-
-            _itemSlots[index].sprite = OrderPotionItemUI.Instance.GetPotionSprite(customPotion.Color);
+            _itemSlots[index].sprite = GetSpriteDependingItemType(currentItem);
             index++;
         }
+    }
+
+    private Sprite GetSpriteDependingItemType(OrderItems.OrderItem currentItem)
+    {
+        if (currentItem.Type == typeof(CustomPotion))
+            return OrderPotionItemUI.Instance.GetPotionSprite(currentItem as OrderItems.Potion);
+        else if (currentItem.Type == typeof(CustomYokaiMask))
+            return OrderYokaiMaskItemUI.Instance.GetMaskSprite(currentItem as OrderItems.YokaiMask);
+        Debug.LogError("Error: Item of type '" + currentItem.GetType().ToString() + "' has no sprite table for orders.");
+        return null;
     }
 
     public void ShowItemAsGiven(int itemIndexInOrder)

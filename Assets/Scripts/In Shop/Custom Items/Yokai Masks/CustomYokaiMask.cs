@@ -7,7 +7,7 @@ public class CustomYokaiMask : ACustomItem
     [SerializeField]
     private YokaiMaskType _maskType;
 
-    public YokaiMaskPaint PaintType { get; set; }
+    public YokaiMaskPaint Paint { get; set; }
     public YokaiMaskType MaskType { get; set; }
 
     [HideInInspector]
@@ -17,7 +17,7 @@ public class CustomYokaiMask : ACustomItem
     private void Start()
     {
         MaskType = _maskType;
-        PaintType = YokaiMaskPaint.None;
+        Paint = YokaiMaskPaint.None;
         _potionUpdateSprite = GetComponent<PotionUpdateSprite>();
 
         if (_potionUpdateSprite == null)
@@ -26,17 +26,22 @@ public class CustomYokaiMask : ACustomItem
 
     public override bool IsSellable()
     {
-        return PaintType != YokaiMaskPaint.None;
+        return Paint != YokaiMaskPaint.None;
     }
 
     public override bool CheckOrderItem(OrderItems.OrderItem orderItem)
     {
-        OrderItems.Potion comparedPotion = (OrderItems.Potion)orderItem;
+        OrderItems.YokaiMask comparedMask;
 
-        /*if (this.GetType() == comparedPotion.Type &&
-            Complexity == comparedPotion.Complexity &&
-            PaintType == comparedPotion.Color)
-            return true;*/
+        if (orderItem.GetType() != typeof(OrderItems.YokaiMask))
+            return false;
+
+        comparedMask = (OrderItems.YokaiMask)orderItem;
+        if (this.GetType() == comparedMask.Type &&
+            Complexity == comparedMask.Complexity &&
+            Paint == comparedMask.Paint &&
+            MaskType == comparedMask.MaskType)
+            return true;
         return false;
     }
 

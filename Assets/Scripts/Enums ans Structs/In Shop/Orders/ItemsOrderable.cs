@@ -4,8 +4,13 @@ using UnityEngine;
 
 public static class ItemsOrderable
 {
-    public static readonly List<System.Type> itemTypes = new List<System.Type> { typeof(CustomPotion) };
+    public static readonly List<System.Type> itemTypes = new List<System.Type>
+    {
+        typeof(CustomPotion),
+        typeof(CustomYokaiMask)
+    };
 
+    #region Potions
     /* PotionColors depending on their complexity */
     public static readonly Dictionary<int, List<PotionColor>> potionColorsComplexity = new Dictionary<int, List<PotionColor>>
     {
@@ -32,4 +37,34 @@ public static class ItemsOrderable
             }
         }
     };
+    #endregion Potions
+
+    #region Yokai Masks
+    /* Masks painting depending on their complexity */
+    public static readonly Dictionary<int, List<YokaiMaskPaint>> yokaiMaskPaintComplexity = new Dictionary<int, List<YokaiMaskPaint>>
+    {
+        { 1,
+            new List<YokaiMaskPaint>
+            {
+                YokaiMaskPaint.Drop,
+                YokaiMaskPaint.Eye,
+                YokaiMaskPaint.Fire
+            }
+        },
+        { 2,
+            new List<YokaiMaskPaint>
+            {
+                YokaiMaskPaint.DropEye,
+                YokaiMaskPaint.DropFire,
+                YokaiMaskPaint.EyeFire
+            }
+        },
+        { 3,
+            new List<YokaiMaskPaint>
+            {
+                YokaiMaskPaint.DropEyeFire
+            }
+        }
+    };
+    #endregion Yokai Masks
 }
