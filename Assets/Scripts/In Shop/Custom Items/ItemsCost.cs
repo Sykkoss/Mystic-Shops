@@ -8,21 +8,21 @@ public static class ItemsCost
 
     public static int ComputeItemCost(OrderItems.OrderItem orderItem)
     {
-        if (orderItem.Type == typeof(CustomPotion))
-            return ComputePotionCost(orderItem.Complexity);
-        else if (orderItem.GetType() == typeof(CustomYokaiMask))
-            return ComputeYokaiMaskCost(orderItem.Complexity);
-        Debug.LogError("Error: Item of type '" + orderItem.GetType().ToString() + "' has no currency value.");
-        return 0;
+        return ComputeItemCostFromType(orderItem.Type, orderItem.Complexity);
     }
 
     public static int ComputeItemCost(ACustomItem customItem)
     {
-        if (customItem.GetType() == typeof(CustomPotion))
-            return ComputePotionCost(customItem.Complexity);
-        else if (customItem.GetType() == typeof(CustomYokaiMask))
-            return ComputeYokaiMaskCost(customItem.Complexity);
-        Debug.LogError("Error: Item of type '" + customItem.GetType().ToString() + "' has no currency value.");
+        return ComputeItemCostFromType(customItem.GetType(), customItem.Complexity);
+    }
+
+    private static int ComputeItemCostFromType(System.Type itemType, int itemComplexity)
+    {
+        if (itemType == typeof(CustomPotion))
+            return ComputePotionCost(itemComplexity);
+        else if (itemType == typeof(CustomYokaiMask))
+            return ComputeYokaiMaskCost(itemComplexity);
+        Debug.LogError("Error: Item of type '" + itemType.ToString() + "' has no currency value.");
         return 0;
     }
 
