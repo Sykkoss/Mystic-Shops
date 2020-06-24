@@ -66,8 +66,11 @@ public class Client : MonoBehaviour
         State = ClientState.Moving;
         while (elapsedTime < _moveTime)
         {
-            transform.position = Vector3.Lerp(startPosition, destination, (elapsedTime / _moveTime));
-            elapsedTime += Time.deltaTime;
+            if (!PlayerTime.Instance.IsPaused)
+            {
+                transform.position = Vector3.Lerp(startPosition, destination, (elapsedTime / _moveTime));
+                elapsedTime += Time.deltaTime;
+            }
             yield return new WaitForEndOfFrame();
         }
         transform.position = destination;

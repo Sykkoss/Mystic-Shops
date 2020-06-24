@@ -11,6 +11,7 @@ public class ClientManager : MonoBehaviour
     public GameObject _orderUIPrefab;
     public Transform _orderParent;
 
+    private Coroutine _clientSpawnerCoroutine;
     private ClientGenerator _clientGenerator;
     private Queue<ClientData> _clientsList;
 
@@ -22,6 +23,8 @@ public class ClientManager : MonoBehaviour
             Debug.LogError("Error: No Component 'ClientGenerator' were found on gameObject '" + gameObject.name + "'. Could not continue.");
         else
         {
+            _clientSpawnerCoroutine = null;
+            PlayerTime.Instance.OnTimerFinish += StopSpawningClients;
             ClientSlotManager.Instance.InitSlots();
             _clientsList = _clientGenerator.GenerateFullLevelClients(_maxClients);
             StartSpawningClients();
@@ -31,17 +34,27 @@ public class ClientManager : MonoBehaviour
     public void StartSpawningClients()
     {
         ClientSpawnerCurrentState = ClientSpawnerState.Spawning;
-        StartCoroutine(SpawnNextClientAndWait());
+        _clientSpawnerCoroutine = StartCoroutine(SpawnNextClientAndWait());
     }
 
     private IEnumerator SpawnNextClientAndWait()
     {
         while (_clientsList.Count > 0)
         {
-            SpawnClient();
+            if (!PlayerTime.Instance.IsPaused)
+                SpawnClient();
             yield return new WaitForSeconds(4f);
         }
+        _clientSpawnerCoroutine = null;
+        StopSpawningClients();
+    }
+
+    private void StopSpawningClients()
+    {
+        if (_clientSpawnerCoroutine != null)
+            StopCoroutine(_clientSpawnerCoroutine);
         ClientSpawnerCurrentState = ClientSpawnerState.Finished;
+        PlayerTime.Instance.OnTimerFinish -= StopSpawningClients;
     }
 
     private void SpawnClient()
