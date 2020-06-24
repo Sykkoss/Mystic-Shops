@@ -80,11 +80,21 @@ public class Client : MonoBehaviour
     private void Order()
     {
         State = ClientState.Ordering;
+        SetPositionOnFront();
 
         //Animation
         _interactibleOrder.ShowOrder(true);
         _interactibleOrder.SetOrderPositionOnScreen(transform.GetChild(0).position);
         StartCoroutine(WaitForOrder());
+    }
+
+    // Clients ordering are shown in front of every other clients
+    private void SetPositionOnFront()
+    {
+        Vector3 newPos = transform.position;
+
+        newPos.z = -1;
+        transform.position = newPos;
     }
 
     private IEnumerator WaitForOrder()
@@ -100,9 +110,11 @@ public class Client : MonoBehaviour
 
     private void HasBeenServed()
     {
-        Vector2 outOfScreenDestination = ClientDestination.ComputeSpawnOrQuitPosition();
+        Vector3 outOfScreenDestination = ClientDestination.ComputeSpawnOrQuitPosition();
 
         PutMoneyOnCounter();
+        // Clients leaving are shown behind every other clients
+        outOfScreenDestination.z = 1;
         StartCoroutine(MoveTowardsDestination(outOfScreenDestination, DestroyClient));
     }
 
