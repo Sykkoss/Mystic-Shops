@@ -19,7 +19,7 @@ public class ClientGenerator : MonoBehaviour
         return levelClients;
     }
 
-    private ClientData GetNextClient()
+    public ClientData GetNextClient()
     {
         return _availableClients[Random.Range(0, _availableClients.Count)];
     }
