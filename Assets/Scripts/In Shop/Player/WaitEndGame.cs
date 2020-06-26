@@ -35,6 +35,6 @@ public class WaitEndGame : MonoBehaviour
         }
         PlayerTime.Instance.OnTimerFinish -= () => StartCoroutine(WaitAllClientsOrder());
 
-        // Display end-game menu
+        ScenesManager.AddSceneToCurrent("EndGame");
     }
 }

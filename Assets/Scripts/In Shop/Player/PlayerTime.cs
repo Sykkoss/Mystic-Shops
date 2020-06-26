@@ -24,7 +24,7 @@ public class PlayerTime : MonoBehaviour
 
     private void Start()
     {
-        InitTime(60f);
+        InitTime(200f);
         StartTimer();
     }
 
