@@ -12,7 +12,6 @@ public class PlayerDifficulty : MonoBehaviour
     }
 
     public static PlayerDifficulty Instance;
-    //Difficulty should be contained between 1 and 100 (inclusive)
     public int _difficulty;
     public List<CustomCurve> _numberItemsRatesCurves;
     public List<CustomCurve> _itemComplexityRatesCurves;
@@ -33,6 +32,7 @@ public class PlayerDifficulty : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        _difficulty = ShopDifficulty._difficulty;
     }
 
     public int GetNumberItemsForOrder()
