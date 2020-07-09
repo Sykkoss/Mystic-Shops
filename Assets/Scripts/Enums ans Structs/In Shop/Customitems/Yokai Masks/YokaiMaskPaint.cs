@@ -1,11 +1,11 @@
 ﻿public enum YokaiMaskPaint
 {
     None,
-    Drop,
-    Eye,
-    Fire,
-    EyeFire,
-    DropFire,
-    DropEye,
-    DropEyeFire
+    Point,
+    Diamond,
+    Flame,
+    DiamondFlame,
+    PointFlame,
+    PointDiamond,
+    PointDiamondFlame
 }

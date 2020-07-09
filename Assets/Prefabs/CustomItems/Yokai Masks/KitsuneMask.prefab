@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5298755437285776183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.09796501, y: 0.09796501, z: 0.6531}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,8 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 2080956627
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4712210890687537058, guid: 8d6b7b4d426d2e343b0e51a00af96fd4,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7dad63c416a3b3f47bc8473db9b806b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,18 +98,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.46577168, y: 1.0585728}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.56, y: 8.52}
+    oldSize: {x: 20.48, y: 20.48}
     newSize: {x: 5.56, y: 8.52}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.56, y: 8.52}
+  m_Size: {x: 10.556463, y: 16.141716}
   m_EdgeRadius: 0
 --- !u!114 &5298755437285776179
 MonoBehaviour:
@@ -152,11 +151,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _potionSprites:
-  - {fileID: -4712210890687537058, guid: 8d6b7b4d426d2e343b0e51a00af96fd4, type: 3}
-  - {fileID: -5547143051009293955, guid: a26fe9e502d2c794889c00e1da2dda65, type: 3}
-  - {fileID: 406887254001310674, guid: 86fafba5bf0576b4b91ed43a5b88bd86, type: 3}
-  - {fileID: -2937648478511950767, guid: a26fe9e502d2c794889c00e1da2dda65, type: 3}
-  - {fileID: 2318000653720819663, guid: 86fafba5bf0576b4b91ed43a5b88bd86, type: 3}
-  - {fileID: 7009250588832506111, guid: a26fe9e502d2c794889c00e1da2dda65, type: 3}
-  - {fileID: -2277534185222337443, guid: 86fafba5bf0576b4b91ed43a5b88bd86, type: 3}
-  - {fileID: 7048488459281583439, guid: 8d6b7b4d426d2e343b0e51a00af96fd4, type: 3}
+  - {fileID: 21300000, guid: 7dad63c416a3b3f47bc8473db9b806b9, type: 3}
+  - {fileID: 21300000, guid: dc8f236c6f1fea24cb80ce67ae5abbe5, type: 3}
+  - {fileID: 21300000, guid: a442fd04d852098429d1418b52e1e7f0, type: 3}
+  - {fileID: 21300000, guid: 923c4ff2dc652134d87d95921d131c29, type: 3}
+  - {fileID: 21300000, guid: ea153919589bdec469726a2fd43261b4, type: 3}
+  - {fileID: 21300000, guid: 688ff4f12d08c0d42b18da05451ee16e, type: 3}
+  - {fileID: 21300000, guid: 9cd1919269a1dfb46b3efba57e5c0994, type: 3}
+  - {fileID: 21300000, guid: f88e3b536a107a94a9bd1b1b1984c19f, type: 3}
