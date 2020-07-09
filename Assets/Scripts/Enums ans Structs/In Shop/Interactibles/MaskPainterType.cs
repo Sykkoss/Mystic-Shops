@@ -1,6 +1,6 @@
 ﻿public enum MaskPainterType
 {
-    Drop,
-    Eye,
-    Fire
+    Point,
+    Diamond,
+    Flame
 }

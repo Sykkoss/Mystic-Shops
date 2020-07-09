@@ -46,23 +46,23 @@ public static class ItemsOrderable
         { 1,
             new List<YokaiMaskPaint>
             {
-                YokaiMaskPaint.Drop,
-                YokaiMaskPaint.Eye,
-                YokaiMaskPaint.Fire
+                YokaiMaskPaint.Point,
+                YokaiMaskPaint.Diamond,
+                YokaiMaskPaint.Flame
             }
         },
         { 2,
             new List<YokaiMaskPaint>
             {
-                YokaiMaskPaint.DropEye,
-                YokaiMaskPaint.DropFire,
-                YokaiMaskPaint.EyeFire
+                YokaiMaskPaint.PointDiamond,
+                YokaiMaskPaint.PointFlame,
+                YokaiMaskPaint.DiamondFlame
             }
         },
         { 3,
             new List<YokaiMaskPaint>
             {
-                YokaiMaskPaint.DropEyeFire
+                YokaiMaskPaint.PointDiamondFlame
             }
         }
     };

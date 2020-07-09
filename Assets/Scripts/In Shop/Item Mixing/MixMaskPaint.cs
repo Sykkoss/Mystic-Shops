@@ -12,46 +12,46 @@ public static class MixMaskPaint
             return (YokaiMaskPaint)painterType + 1;
         }
 
-        if (painterType == MaskPainterType.Drop)
+        if (painterType == MaskPainterType.Point)
         {
             // If potion already contain Red, do not change its color
-            if (paint == YokaiMaskPaint.Drop || paint == YokaiMaskPaint.DropFire ||
-                paint == YokaiMaskPaint.DropEye || paint == YokaiMaskPaint.DropEyeFire)
+            if (paint == YokaiMaskPaint.Point || paint == YokaiMaskPaint.PointFlame ||
+                paint == YokaiMaskPaint.PointDiamond || paint == YokaiMaskPaint.PointDiamondFlame)
                 return paint;
-            else if (paint == YokaiMaskPaint.Eye)
-                return YokaiMaskPaint.DropEye;
-            else if (paint == YokaiMaskPaint.Fire)
-                return YokaiMaskPaint.DropFire;
-            else if (paint == YokaiMaskPaint.EyeFire)
-                return YokaiMaskPaint.DropEyeFire;
+            else if (paint == YokaiMaskPaint.Diamond)
+                return YokaiMaskPaint.PointDiamond;
+            else if (paint == YokaiMaskPaint.Flame)
+                return YokaiMaskPaint.PointFlame;
+            else if (paint == YokaiMaskPaint.DiamondFlame)
+                return YokaiMaskPaint.PointDiamondFlame;
         }
 
-        if (painterType == MaskPainterType.Eye)
+        if (painterType == MaskPainterType.Diamond)
         {
             // If potion already contain Blue, do not change its color
-            if (paint == YokaiMaskPaint.Eye || paint == YokaiMaskPaint.EyeFire ||
-                paint == YokaiMaskPaint.DropEye || paint == YokaiMaskPaint.DropEyeFire)
+            if (paint == YokaiMaskPaint.Diamond || paint == YokaiMaskPaint.DiamondFlame ||
+                paint == YokaiMaskPaint.PointDiamond || paint == YokaiMaskPaint.PointDiamondFlame)
                 return paint;
-            else if (paint == YokaiMaskPaint.Drop)
-                return YokaiMaskPaint.DropEye;
-            else if (paint == YokaiMaskPaint.Fire)
-                return YokaiMaskPaint.EyeFire;
-            else if (paint == YokaiMaskPaint.DropFire)
-                return YokaiMaskPaint.DropEyeFire;
+            else if (paint == YokaiMaskPaint.Point)
+                return YokaiMaskPaint.PointDiamond;
+            else if (paint == YokaiMaskPaint.Flame)
+                return YokaiMaskPaint.DiamondFlame;
+            else if (paint == YokaiMaskPaint.PointFlame)
+                return YokaiMaskPaint.PointDiamondFlame;
         }
 
-        if (painterType == MaskPainterType.Fire)
+        if (painterType == MaskPainterType.Flame)
         {
             // If potion already contain Yellow, do not change its color
-            if (paint == YokaiMaskPaint.Fire || paint == YokaiMaskPaint.EyeFire ||
-                paint == YokaiMaskPaint.DropFire || paint == YokaiMaskPaint.DropEyeFire)
+            if (paint == YokaiMaskPaint.Flame || paint == YokaiMaskPaint.DiamondFlame ||
+                paint == YokaiMaskPaint.PointFlame || paint == YokaiMaskPaint.PointDiamondFlame)
                 return paint;
-            else if (paint == YokaiMaskPaint.Drop)
-                return YokaiMaskPaint.DropFire;
-            else if (paint == YokaiMaskPaint.Eye)
-                return YokaiMaskPaint.EyeFire;
-            else if (paint == YokaiMaskPaint.DropEye)
-                return YokaiMaskPaint.DropEyeFire;
+            else if (paint == YokaiMaskPaint.Point)
+                return YokaiMaskPaint.PointFlame;
+            else if (paint == YokaiMaskPaint.Diamond)
+                return YokaiMaskPaint.DiamondFlame;
+            else if (paint == YokaiMaskPaint.PointDiamond)
+                return YokaiMaskPaint.PointDiamondFlame;
         }
 
         // If nothing matches, do not change potion's color
